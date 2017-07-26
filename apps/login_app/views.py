@@ -16,7 +16,7 @@ def register(request):
 def login(request):
     results = User.objects.loginVal(request.POST)
     if results['status']==False:
-        for error in results['errors']:
+        for error in results['loginMsg']:
             messages.error(request, error)
         return redirect('/')
     else:
