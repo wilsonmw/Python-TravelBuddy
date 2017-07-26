@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel Buddy Homepage</title>
+</head>
+<body>
+    <h1>Welcome {{user.name}}</h1>
+    <br>
+    <a href='/logout'>Logout</a>
+    <h3>Your trip schedules:</h3>
+    <table style='border: 1px solid black'>
+        <tr>
+            <th style='border: 1px solid black'>Destination</th>
+            <th style='border: 1px solid black'>Travel Start Date</th>
+            <th style='border: 1px solid black'>Travel End Date</th>
+            <th style='border: 1px solid black'>Plan</th>
+        </tr>
+        {% for trip in trips %}
+            <tr>
+                <td style='border: 1px solid black'><a href='/show/{{trip.id}}'>{{trip.destination}}</a></td>
+                <td style='border: 1px solid black'>{{trip.beginDate}}</td>
+                <td style='border: 1px solid black'>{{trip.endDate}}</td>
+                <td style='border: 1px solid black'>{{trip.description}}</td>
+            </tr>
+        {% endfor %}
+        {% for trip in joins %}
+            <tr>
+                <td style='border: 1px solid black'><a href='/show/{{trip.id}}'>{{trip.destination}}</a></td>
+                <td style='border: 1px solid black'>{{trip.beginDate}}</td>
+                <td style='border: 1px solid black'>{{trip.endDate}}</td>
+                <td style='border: 1px solid black'>{{trip.description}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <h3>Other User's Travel Plans</h3>
+    <table style='border: 1px solid black'>
+        <tr>
+            <th style='border: 1px solid black'>Name</th>
+            <th style='border: 1px solid black'>Destination</th>
+            <th style='border: 1px solid black'>Travel Start Date</th>
+            <th style='border: 1px solid black'>Travel End Date</th>
+            <th style='border: 1px solid black'>Do You Want to Join?</th>
+        </tr>
+        {% for trip in otherTrips %}
+            <tr>
+                <td style='border: 1px solid black'>{{trip.owner.name}}</td>
+                <td style='border: 1px solid black'><a href='/show/{{trip.id}}'>{{trip.destination}}</a></td>
+                <td style='border: 1px solid black'>{{trip.beginDate}}</td>
+                <td style='border: 1px solid black'>{{trip.endDate}}</td>
+                <td style='border: 1px solid black'><a href='/join/{{trip.id}}'>Join</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href='/addTravel'>Add Travel Plans</a>
+</body>
+</html>

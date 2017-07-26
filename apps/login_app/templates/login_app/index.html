@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel Buddy Login</title>
+</head>
+<body>
+    <h1>Please log in to Travel Buddy</h1>
+    <h3>(If you don't have an account, please register below.)</h3>
+
+    <form action='/login' method="POST">
+        {% csrf_token %}
+        Username (Email Address): <input type='email' name='email' placeholder="Enter your email address"><br>
+        <br>
+        Password: <input type='password' name='password' placeholder="Enter your password"><br>
+        <br>
+        <input type='submit' value = 'Login!'><br>
+        <br>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p style='color:red'>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+    <h1>Register</h1>
+    
+    <form action='/register' method="POST">
+        {% csrf_token %}
+        Name: <input type='text' name='name' placeholder="Enter your name"><br>
+        <br>
+        Username (Email Address): <input type='email' name='email' placeholder="Enter your email address"><br>
+        <br>
+        Password: <input type='password' name='password' placeholder="Create a password"><br>
+        <p>*Password should be at least 8 characters.</p>
+        <br>
+        Confirm Password: <input type='password' name='confirmpw' placeholder="Re-type your password"><br>
+        <br>
+        <input type='submit' value = 'Register!'><br>
+        <br>
+    </form>
+</body>
+</html>
